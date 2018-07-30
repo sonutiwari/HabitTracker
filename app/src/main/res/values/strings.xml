@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
     <string name="comment">Day i: Comments</string>
+    <string name="tag">Sonu</string>
+    <string name="message">habit:</string>
+    <string name="space" />
+    <string name="pattern">yyyyMMdd</string>
 </resources>

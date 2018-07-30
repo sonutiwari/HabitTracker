@@ -16,13 +16,14 @@ import in.co.chicmic.habittracker.utilities.HabitDbHelper;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle pSavedInstanceState) {
+        super.onCreate(pSavedInstanceState);
         setContentView(R.layout.activity_main);
 
         HabitDbHelper habitDbHelper = new HabitDbHelper(this);
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH);
+        SimpleDateFormat formatter
+                = new SimpleDateFormat(getString(R.string.pattern), Locale.ENGLISH);
         String dateString = formatter.format(date);
         int dateInt = Integer.parseInt(dateString);
 
@@ -32,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.comment));
         Cursor cursor = habitDbHelper.readHabits();
         while (cursor.moveToNext()) {
-            Log.v("Sonu", "habit: " + cursor.getInt(0) + " " + cursor.getInt(1) +
-                    " " + cursor.getInt(2) + " " + cursor.getString(3));
+            Log.v(getString(R.string.tag)
+                    , getString(R.string.message) + cursor.getInt(0)
+                            + getString(R.string.space) + cursor.getInt(1)
+                            + getString(R.string.space) + cursor.getInt(2)
+                            + getString(R.string.space) + cursor.getString(3));
         }
     }
 

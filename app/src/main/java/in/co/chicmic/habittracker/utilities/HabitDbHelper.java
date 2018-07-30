@@ -14,32 +14,32 @@ public class HabitDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "habitTracker.db";
     private static final int DATABASE_VERSION = 1;
 
-    public HabitDbHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public HabitDbHelper(Context pContext) {
+        super(pContext, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase pSqLiteDatabase) {
         String CREATE_TABLE_TRACKING_DIARY = "CREATE TABLE " + HabitContract.HabitEntry.TABLE_NAME +
                 "(" + HabitContract.HabitEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 HabitContract.HabitEntry.COLUMN_DATE + " INTEGER NOT NULL," +
                 HabitContract.HabitEntry.COLUMN_HABIT + " INTEGER NOT NULL," +
                 HabitContract.HabitEntry.COLUMN_COMMENT + " TEXT);";
         Log.v("Sonu", "create table: " + CREATE_TABLE_TRACKING_DIARY);
-        sqLiteDatabase.execSQL(CREATE_TABLE_TRACKING_DIARY);
+        pSqLiteDatabase.execSQL(CREATE_TABLE_TRACKING_DIARY);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int pOldVersion, int pNewVersion) {
 
     }
 
-    public void insertHabit(int date, int habit, String comment) {
+    public void insertHabit(int pDate, int pHabit, String pComment) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(HabitContract.HabitEntry.COLUMN_DATE, date);
-        values.put(HabitContract.HabitEntry.COLUMN_HABIT, habit);
-        values.put(HabitContract.HabitEntry.COLUMN_COMMENT, comment);
+        values.put(HabitContract.HabitEntry.COLUMN_DATE, pDate);
+        values.put(HabitContract.HabitEntry.COLUMN_HABIT, pHabit);
+        values.put(HabitContract.HabitEntry.COLUMN_COMMENT, pComment);
         db.insert(HabitContract.HabitEntry.TABLE_NAME, null, values);
     }
 
